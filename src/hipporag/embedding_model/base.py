@@ -222,10 +222,23 @@ class BaseEmbeddingModel:
 class EmbeddingCache:
     """A multiprocessing-safe global cache for storing embeddings."""
     
-    _manager = multiprocessing.Manager()
-    _cache = _manager.dict()  # Shared dictionary for multiprocessing
+    _manager = None
+    _cache = None # Shared dictionary for multiprocessing
     _lock = threading.Lock()  # Thread-safe lock for concurrent access
 
+    @classmethod
+    def get_manager(cls):
+        if cls._manager is None:
+            import multiprocessing
+            cls._manager = multiprocessing.Manager()
+        return cls._manager
+
+    @classmethod
+    def get_cache(cls):
+        if cls._cache is None:
+            cls._cache = cls.get_manager().dict()
+        return cls._cache
+    
     @classmethod
     def get(cls, content):
         """Retrieve the embedding if cached."""

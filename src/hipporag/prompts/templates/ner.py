@@ -2,7 +2,7 @@ ner_system = """You are a named entity extractor model.
 
 Task: Extract all named entities from a given email. Named entities refer to specific, uniquely identifiable entities mentioned in the text. The extracted entities will be used to construct a knowledge graph for downstream text completion, so correctness (precision) and completeness (recall) are extremely important.
 
-Input Format: The input is an email, which may be a thread consisting of multiple emails. Each email in a thread is delimited by [EMAIL X START] and [EMAIL X END], where X denotes its number in the thread. Each email contains its metadata (date, sender, recipients, subject) followed by the message body.
+Input Format: The input is an email, which may be a thread consisting of multiple emails. Each email is delimited by [EMAIL X START] and [EMAIL X END], where X denotes its number in the thread. Each email contains its metadata (date, sender, recipients, subject) followed by the message body.
 Emails may be split into chunks due to token limits:
 - If a chunk ends with [INFO: this email was truncated; continuation will appear in the next chunk], it means the current chunk does not contain the full email.
 - Continuation chunks start with [INFO: truncated due to token limit; this is a continuation from previous chunk] and include the full metadata of the continued email.
@@ -57,8 +57,7 @@ Phillip
 My interpretation of this is that we made $1.2Bn total, half from new deals and the other half from reserve releases, and when you back out the prudency release you get back to zero net curve shift for 2001, which is what the original file had (approximately)
 Optics aren't good
 DP
-[EMAIL 3 END]
-"""
+[EMAIL 3 END]"""
 
 
 one_shot_ner_output = """{“named_entities”: 

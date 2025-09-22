@@ -117,10 +117,11 @@ class PromptTemplateManager:
             ValueError: If a required variable is missing.
         """
         template = self.get_template(name)
+
         if isinstance(template, Template):
             # Render a single string template
             try:
-                result = template.substitute(**kwargs)
+                result = template.safe_substitute(**kwargs)
                 logger.debug(f"Successfully rendered template '{name}' with variables: {kwargs}.")
                 return result
             except KeyError as e:
@@ -130,9 +131,15 @@ class PromptTemplateManager:
             # Render a chat history
             try:
                 rendered_list = [
-                    {"role": item["role"], "content": item["content"].substitute(**kwargs)}
+                    {"role": item["role"], "content": item["content"].safe_substitute(**kwargs)}
                     for item in template
                 ]
+
+                print("----- RENDERED LIST -----")  # Debug print
+                for item in rendered_list:
+                    print(f"Role: {item['role']}, Content: {item['content']}")  # Debug print
+                print("----- END RENDERED LIST -----")  # Debug print
+                
                 logger.debug(f"Successfully rendered chat history template '{name}' with variables: {kwargs}.")
                 return rendered_list
             except KeyError as e:

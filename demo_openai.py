@@ -21,16 +21,16 @@ def main():
         "Montebello is a part of Rockland County."
     ]
     """
+    
     dataset_name = "enron"
     corpus_path = f"reproduce/dataset/{dataset_name}_corpus.json"
     with open(corpus_path, "r") as f:
         corpus = json.load(f)
     docs = [doc['text'] for doc in corpus]
-    
-    
+
     save_dir = 'outputs/openai'  # Define save directory for HippoRAG objects (each LLM/Embedding model combination will create a new subdirectory)
     llm_model_name = 'gpt-4o-mini'  # Any OpenAI model name
-    embedding_model_name = 'text-embedding-3-small'  # Embedding model name (NV-Embed, GritLM or Contriever for now)
+    embedding_model_name = 'text-embedding-3-small'  # Embedding model name (NV-Embed, GritLM or Contriever for now) nvidia/NV-Embed-v2
 
     # Startup a HippoRAG instance
     hipporag = HippoRAG(save_dir=save_dir,
@@ -38,9 +38,9 @@ def main():
                         embedding_model_name=embedding_model_name)
 
     # Run indexing
-    """
     hipporag.index(docs=docs)
 
+    """
     # Separate Retrieval & QA
     queries = [
         "What is George Rankin's occupation?",
