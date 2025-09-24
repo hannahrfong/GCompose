@@ -268,14 +268,14 @@ class HippoRAG:
         self.ent_node_to_chunk_ids = {}
 
         self.add_fact_edges(chunk_ids, chunk_triples)
-        num_new_chunks = self.add_passage_edges(chunk_ids, chunk_triple_entities)
+       # num_new_chunks = self.add_passage_edges(chunk_ids, chunk_triple_entities)
 
-        if num_new_chunks > 0:
-            logger.info(f"Found {num_new_chunks} new chunks to save into graph.")
-            self.add_synonymy_edges()
+        #if num_new_chunks > 0:
+        #    logger.info(f"Found {num_new_chunks} new chunks to save into graph.")
+        self.add_synonymy_edges()
 
-            self.augment_graph()
-            self.save_igraph()
+        self.augment_graph()
+        self.save_igraph()
 
     def delete(self, docs_to_delete: List[str]):
         """
@@ -758,15 +758,25 @@ class HippoRAG:
 
             if chunk_key not in current_graph_nodes:
                 for triple in triples:
-                    triple = tuple(triple)
+                    subj, pred, obj = triple
 
-                    node_key = compute_mdhash_id(content=triple[0], prefix=("entity-"))
-                    node_2_key = compute_mdhash_id(content=triple[2], prefix=("entity-"))
-
+                    node_key = compute_mdhash_id(content=subj, prefix=("entity-"))
+                    node_2_key = compute_mdhash_id(content=obj, prefix=("entity-"))
+                    """
                     self.node_to_node_stats[(node_key, node_2_key)] = self.node_to_node_stats.get(
                         (node_key, node_2_key), 0.0) + 1
                     self.node_to_node_stats[(node_2_key, node_key)] = self.node_to_node_stats.get(
                         (node_2_key, node_key), 0.0) + 1
+                    """
+
+                    self.node_to_node_stats[(node_key, node_2_key)] = {
+                        'weight': self.node_to_node_stats.get((node_key, node_2_key), {'weight': 0})['weight'] + 1,
+                        'relation': pred
+                    }
+                    self.node_to_node_stats[(node_2_key, node_key)] = {
+                        'weight': self.node_to_node_stats.get((node_2_key, node_key), {'weight': 0})['weight'] + 1,
+                        'relation': pred
+                    }
 
                     entities_in_chunk.add(node_key)
                     entities_in_chunk.add(node_2_key)
@@ -1032,10 +1042,10 @@ class HippoRAG:
         existing_nodes = {v["name"]: v for v in self.graph.vs if "name" in v.attributes()}
 
         entity_to_row = self.entity_embedding_store.get_all_id_to_rows()
-        passage_to_row = self.chunk_embedding_store.get_all_id_to_rows()
+        #passage_to_row = self.chunk_embedding_store.get_all_id_to_rows()
 
         node_to_rows = entity_to_row
-        node_to_rows.update(passage_to_row)
+        #node_to_rows.update(passage_to_row)
 
         new_nodes = {}
         for node_id, node in node_to_rows.items():
@@ -1053,37 +1063,59 @@ class HippoRAG:
         """
         Processes edges from `node_to_node_stats` to add them into a graph object while
         managing adjacency lists, validating edges, and logging invalid edge cases.
+
+        Handles both float weights and metadata dicts with 'weight' and 'relation'.
         """
 
         graph_adj_list = defaultdict(dict)
         graph_inverse_adj_list = defaultdict(dict)
         edge_source_node_keys = []
         edge_target_node_keys = []
-        edge_metadata = []
-        for edge, weight in self.node_to_node_stats.items():
-            if edge[0] == edge[1]: continue
-            graph_adj_list[edge[0]][edge[1]] = weight
-            graph_inverse_adj_list[edge[1]][edge[0]] = weight
+        edge_weights = []
+        edge_relations = []
+
+        for edge, metadata in self.node_to_node_stats.items():
+            if edge[0] == edge[1]:
+                continue
+
+            # Determine weight and relation
+            if isinstance(metadata, dict):
+                weight = metadata.get("weight", 1.0)
+                relation = metadata.get("relation", "")
+            else:  # plain float
+                weight = metadata
+                relation = ""
+
+            graph_adj_list[edge[0]][edge[1]] = metadata
+            graph_inverse_adj_list[edge[1]][edge[0]] = metadata
 
             edge_source_node_keys.append(edge[0])
             edge_target_node_keys.append(edge[1])
-            edge_metadata.append({
-                "weight": weight
-            })
+            edge_weights.append(weight)
+            edge_relations.append(relation)
 
-        valid_edges, valid_weights = [], {"weight": []}
-        current_node_ids = set(self.graph.vs["name"])
-        for source_node_id, target_node_id, edge_d in zip(edge_source_node_keys, edge_target_node_keys, edge_metadata):
-            if source_node_id in current_node_ids and target_node_id in current_node_ids:
-                valid_edges.append((source_node_id, target_node_id))
-                weight = edge_d.get("weight", 1.0)
-                valid_weights["weight"].append(weight)
+        # Validate edges
+        valid_edges = []
+        valid_weights = {"weight": [], "relation": []}
+        #current_node_ids = set(self.graph.vs["name"])
+        current_node_ids = set()
+        for v in self.graph.vs:
+            name = v["name"] if "name" in v.attributes() else None
+            if name:
+                current_node_ids.add(name)
+
+
+        for src, tgt, w, rel in zip(edge_source_node_keys, edge_target_node_keys, edge_weights, edge_relations):
+            if src in current_node_ids and tgt in current_node_ids:
+                valid_edges.append((src, tgt))
+                valid_weights["weight"].append(w)
+                valid_weights["relation"].append(rel)
             else:
-                logger.warning(f"Edge {source_node_id} -> {target_node_id} is not valid.")
-        self.graph.add_edges(
-            valid_edges,
-            attributes=valid_weights
-        )
+                logger.warning(f"Edge {src} -> {tgt} is not valid.")
+
+        # Add edges with both weight and relation attributes
+        self.graph.add_edges(valid_edges, attributes=valid_weights)
+
 
     def save_igraph(self):
         logger.info(

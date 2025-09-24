@@ -162,7 +162,7 @@ class BaseConfig:
         metadata={"help": "Similarity threshold to include candidate synonymy nodes."}
     )
     is_directed_graph: bool = field(
-        default=False,
+        default=True,
         metadata={"help": "Whether the graph is directed or not."}
     )
     

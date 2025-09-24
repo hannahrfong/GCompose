@@ -59,6 +59,9 @@ class OpenIE:
                 real_response = raw_response
             extracted_entities = _extract_ner_from_response(real_response)
             unique_entities = list(dict.fromkeys(extracted_entities))
+            print("VAULTBOY NER START----------------------------------------")
+            print(f"NER raw response: {raw_response}")
+            print("VAULTBOY NER END----------------------------------------")
 
         except Exception as e:
             # For any other unexpected exceptions, log them and return with the error message
@@ -79,6 +82,13 @@ class OpenIE:
         )
 
     def triple_extraction(self, chunk_key: str, passage: str, named_entities: List[str]) -> TripleRawOutput:
+        if not named_entities:
+            return TripleRawOutput(
+                chunk_id=chunk_key,
+                response="",
+                metadata={"skipped": "no_named_entities"},
+                triples=[]
+            )
         def _extract_triples_from_response(real_response):
             pattern = r'\{[^{}]*"triples"\s*:\s*\[[^\]]*\][^{}]*\}'
             match = re.search(pattern, real_response, re.DOTALL)
@@ -108,6 +118,9 @@ class OpenIE:
                 real_response = raw_response
             extracted_triples = _extract_triples_from_response(real_response)
             triplets = filter_invalid_triples(triples=extracted_triples)
+            print("VAULTBOY TRIPLE START----------------------------------------")
+            print(f"NER raw response: {raw_response}")
+            print("VAULTBOY TRIPLE END----------------------------------------")
 
         except Exception as e:
             logger.warning(f"Exception for chunk {chunk_key}: {e}")
