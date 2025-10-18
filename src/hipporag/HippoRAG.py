@@ -163,9 +163,20 @@ class HippoRAG:
 
         self.ent_node_to_chunk_ids = None
 
-
     def initialize_graph(self):
         """
+        Always initializes a NEW empty graph (ignores any saved pickle files).
+        """
+        self._graph_pickle_filename = os.path.join(
+            self.working_dir, f"graph.pickle"
+        )
+
+        # Always create a new graph
+        logger.info("⚠️ Creating a new blank graph (ignoring saved graph.pickle)")
+        return ig.Graph(directed=self.global_config.is_directed_graph)
+
+
+    """def initialize_graph(self):
         Initializes a graph using a Pickle file if available or creates a new graph.
 
         The function attempts to load a pre-existing graph stored in a Pickle file. If the file
@@ -178,11 +189,11 @@ class HippoRAG:
 
         Raises:
             None
-        """
+
         self._graph_pickle_filename = os.path.join(
             self.working_dir, f"graph.pickle"
         )
-
+        
         preloaded_graph = None
 
         if not self.global_config.force_index_from_scratch:
@@ -195,7 +206,7 @@ class HippoRAG:
             logger.info(
                 f"Loaded graph from {self._graph_pickle_filename} with {preloaded_graph.vcount()} nodes, {preloaded_graph.ecount()} edges"
             )
-            return preloaded_graph
+            return preloaded_graph"""
 
     def pre_openie(self,  docs: List[str]):
         logger.info(f"Indexing Documents")
@@ -238,6 +249,9 @@ class HippoRAG:
         all_openie_info, chunk_keys_to_process = self.load_existing_openie(chunk_to_rows.keys())
         new_openie_rows = {k : chunk_to_rows[k] for k in chunk_keys_to_process}
 
+        print("MAY NEW???")
+        print(new_openie_rows)
+        
         if len(chunk_keys_to_process) > 0:
             new_ner_results_dict, new_triple_results_dict = self.openie.batch_openie(new_openie_rows)
             self.merge_openie_results(all_openie_info, new_openie_rows, new_ner_results_dict, new_triple_results_dict)
@@ -357,6 +371,7 @@ class HippoRAG:
         #Delete Nodes from Graph
         self.graph.delete_vertices(list(filtered_ent_ids_to_delete) + list(chunk_ids_to_delete))
         self.save_igraph()
+        self.save_entity_passage_counts()
 
         self.ready_to_retrieve = False
 
@@ -753,12 +768,19 @@ class HippoRAG:
 
         logger.info(f"Adding OpenIE triples to graph.")
 
+        # DEBUG COUNTERS
+        total_input_triples = 0
+        total_unique_edges = 0
+        total_duplicates = 0
+        seen_edges = set()
+
         for chunk_key, triples in tqdm(zip(chunk_ids, chunk_triples)):
             entities_in_chunk = set()
 
             if chunk_key not in current_graph_nodes:
                 for triple in triples:
                     subj, pred, obj = triple
+                    total_input_triples += 1
 
                     node_key = compute_mdhash_id(content=subj, prefix=("entity-"))
                     node_2_key = compute_mdhash_id(content=obj, prefix=("entity-"))
@@ -768,21 +790,65 @@ class HippoRAG:
                     self.node_to_node_stats[(node_2_key, node_key)] = self.node_to_node_stats.get(
                         (node_2_key, node_key), 0.0) + 1
                     """
+                    edge_key = (node_key, node_2_key)
+                    # DEBUG: Detect duplicates before writing
+                    if edge_key in self.node_to_node_stats:
+                        total_duplicates += 1
+                        print(
+                            f"[Duplicate Edge] {edge_key} already exists — "
+                            f"previous relation={self.node_to_node_stats[edge_key].get('relation')} | new relation={pred}"
+                        )
+                    else:
+                        total_unique_edges += 1
+                        seen_edges.add(edge_key)
 
+
+                    existing_edge = self.node_to_node_stats.get((node_key, node_2_key), {'weight': 0, 'relation': ''})
+
+                    # Increment weight
+                    new_weight = existing_edge['weight'] + 1
+
+                    # Merge relations (avoid duplicates)
+                    existing_rels = set(existing_edge['relation'].split('; ')) if existing_edge['relation'] else set()
+                    existing_rels.add(pred.strip())
+                    merged_relations = '; '.join(sorted(existing_rels))
+
+                    # Update edge record
                     self.node_to_node_stats[(node_key, node_2_key)] = {
+                        'weight': new_weight,
+                        'relation': merged_relations
+                    }
+
+                    """self.node_to_node_stats[(node_key, node_2_key)] = {
                         'weight': self.node_to_node_stats.get((node_key, node_2_key), {'weight': 0})['weight'] + 1,
                         'relation': pred
-                    }
-                    self.node_to_node_stats[(node_2_key, node_key)] = {
+                    }"""
+                    """self.node_to_node_stats[(node_2_key, node_key)] = {
                         'weight': self.node_to_node_stats.get((node_2_key, node_key), {'weight': 0})['weight'] + 1,
                         'relation': pred
-                    }
+                    }"""
 
                     entities_in_chunk.add(node_key)
                     entities_in_chunk.add(node_2_key)
 
                 for node in entities_in_chunk:
                     self.ent_node_to_chunk_ids[node] = self.ent_node_to_chunk_ids.get(node, set()).union(set([chunk_key]))
+
+            else:
+                print(f"Chunk key already exists as node, skipping chunk_id={chunk_key}")
+
+        # Final Debug Summary
+        """print("========== [add_fact_edges] SUMMARY ==========")
+        print(f"Total input triples: {total_input_triples}")
+        print(f"Unique edges inserted: {total_unique_edges}")
+        print(f"Duplicate edges updated: {total_duplicates}")
+        print(f"Final edge count in node_to_node_stats: {len(self.node_to_node_stats)}")
+        print(f"Example edge keys: {list(seen_edges)[:5]}")
+        print()
+        print()
+        print("BANDANG LAPIS")
+        print(self.node_to_node_stats)
+        print("===============================================")"""
 
     def add_passage_edges(self, chunk_ids: List[str], chunk_triple_entities: List[List[str]]):
         """
@@ -1059,6 +1125,7 @@ class HippoRAG:
         if len(new_nodes) > 0:
             self.graph.add_vertices(n=len(next(iter(new_nodes.values()))), attributes=new_nodes)
 
+    # TODO: DOUBLE CHECK; MAKE UNDIRECTED
     def add_new_edges(self):
         """
         Processes edges from `node_to_node_stats` to add them into a graph object while
@@ -1099,11 +1166,11 @@ class HippoRAG:
         valid_weights = {"weight": [], "relation": []}
         #current_node_ids = set(self.graph.vs["name"])
         current_node_ids = set()
+
         for v in self.graph.vs:
             name = v["name"] if "name" in v.attributes() else None
             if name:
                 current_node_ids.add(name)
-
 
         for src, tgt, w, rel in zip(edge_source_node_keys, edge_target_node_keys, edge_weights, edge_relations):
             if src in current_node_ids and tgt in current_node_ids:
@@ -1155,7 +1222,8 @@ class HippoRAG:
 
         # get # of passage nodes
         passage_nodes_keys = self.chunk_embedding_store.get_all_ids()
-        graph_info["num_passage_nodes"] = len(set(passage_nodes_keys))
+        #graph_info["num_passage_nodes"] = len(set(passage_nodes_keys))
+        graph_info["num_passage_nodes"] = 0
 
         # get # of total nodes
         graph_info["num_total_nodes"] = graph_info["num_phrase_nodes"] + graph_info["num_passage_nodes"]
@@ -1177,6 +1245,15 @@ class HippoRAG:
         # get # of total triples
         graph_info["num_total_triples"] = len(self.node_to_node_stats)
 
+        # unique relations
+        unique_relations = set()
+        for metadata in self.node_to_node_stats.values():
+            if isinstance(metadata, dict):
+                rel = metadata.get("relation", "")
+                if rel:  # ignore empty string
+                    unique_relations.add(rel)
+        graph_info["num_unique_relations"] = len(unique_relations)
+
         return graph_info
 
     def prepare_retrieval_objects(self):
@@ -1195,7 +1272,8 @@ class HippoRAG:
         self.fact_node_keys: List = list(self.fact_embedding_store.get_all_ids())
 
         # Check if the graph has the expected number of nodes
-        expected_node_count = len(self.entity_node_keys) + len(self.passage_node_keys)
+        #expected_node_count = len(self.entity_node_keys) + len(self.passage_node_keys)
+        expected_node_count = len(self.entity_node_keys)
         actual_node_count = self.graph.vcount()
         
         if expected_node_count != actual_node_count:
@@ -1205,27 +1283,36 @@ class HippoRAG:
                 logger.info(f"Initializing graph with {expected_node_count} nodes")
                 self.add_new_nodes()
                 self.save_igraph()
+                self.save_entity_passage_counts()
 
         # Create mapping from node name to vertex index
         try:
             igraph_name_to_idx = {node["name"]: idx for idx, node in enumerate(self.graph.vs)} # from node key to the index in the backbone graph
             self.node_name_to_vertex_idx = igraph_name_to_idx
+
+            self.idx_to_node_name = {idx: name for name, idx in self.node_name_to_vertex_idx.items()} # TODO: double check if correct
+            self.idx_to_entity_text = {
+                idx: self.entity_embedding_store.hash_id_to_text[name]
+                for idx, name in self.idx_to_node_name.items()
+            }
             
             # Check if all entity and passage nodes are in the graph
             missing_entity_nodes = [node_key for node_key in self.entity_node_keys if node_key not in igraph_name_to_idx]
-            missing_passage_nodes = [node_key for node_key in self.passage_node_keys if node_key not in igraph_name_to_idx]
+            #missing_passage_nodes = [node_key for node_key in self.passage_node_keys if node_key not in igraph_name_to_idx]
             
-            if missing_entity_nodes or missing_passage_nodes:
-                logger.warning(f"Missing nodes in graph: {len(missing_entity_nodes)} entity nodes, {len(missing_passage_nodes)} passage nodes")
+            #if missing_entity_nodes or missing_passage_nodes:
+            if missing_entity_nodes:
+                #logger.warning(f"Missing nodes in graph: {len(missing_entity_nodes)} entity nodes, {len(missing_passage_nodes)} passage nodes")
+                logger.warning(f"Missing nodes in graph: {len(missing_entity_nodes)} entity nodes")
                 # If nodes are missing, rebuild the graph
                 self.add_new_nodes()
                 self.save_igraph()
                 # Update the mapping
                 igraph_name_to_idx = {node["name"]: idx for idx, node in enumerate(self.graph.vs)}
                 self.node_name_to_vertex_idx = igraph_name_to_idx
-            
+
             self.entity_node_idxs = [igraph_name_to_idx[node_key] for node_key in self.entity_node_keys] # a list of backbone graph node index
-            self.passage_node_idxs = [igraph_name_to_idx[node_key] for node_key in self.passage_node_keys] # a list of backbone passage node index
+            #self.passage_node_idxs = [igraph_name_to_idx[node_key] for node_key in self.passage_node_keys] # a list of backbone passage node index
         except Exception as e:
             logger.error(f"Error creating node index mapping: {str(e)}")
             # Initialize with empty lists if mapping fails
@@ -1627,18 +1714,291 @@ class HippoRAG:
         """
 
         if damping is None: damping = 0.5 # for potential compatibility
+
         reset_prob = np.where(np.isnan(reset_prob) | (reset_prob < 0), 0, reset_prob)
+
         pagerank_scores = self.graph.personalized_pagerank(
             vertices=range(len(self.node_name_to_vertex_idx)),
             damping=damping,
-            directed=False,
+            directed=True,
             weights='weight',
             reset=reset_prob,
             implementation='prpack'
         )
 
-        doc_scores = np.array([pagerank_scores[idx] for idx in self.passage_node_idxs])
-        sorted_doc_ids = np.argsort(doc_scores)[::-1]
-        sorted_doc_scores = doc_scores[sorted_doc_ids.tolist()]
+        #doc_scores = np.array([pagerank_scores[idx] for idx in self.passage_node_idxs])
+        #sorted_doc_ids = np.argsort(doc_scores)[::-1]
+        #sorted_doc_scores = doc_scores[sorted_doc_ids.tolist()]
 
-        return sorted_doc_ids, sorted_doc_scores
+        #return sorted_doc_ids, sorted_doc_scores
+
+        # Since we don't have passage nodes
+        sorted_node_ids = np.argsort(pagerank_scores)[::-1]
+        pagerank_scores = np.array(pagerank_scores)
+        sorted_node_scores = pagerank_scores[sorted_node_ids.tolist()]
+
+        return sorted_node_ids, sorted_node_scores
+
+
+
+
+
+
+
+# GCompose
+    def find_query_nodes(self, query_entities: List[str]) -> Dict[str, int]:
+        """
+        Map each query entity to the closest entity node in the graph.
+        Returns:
+            Dict mapping entity -> node_idx
+        """
+        # Encode query entities
+        entity_embs = self.embedding_model.encode(query_entities)
+        entity_embs = (entity_embs.T / np.linalg.norm(entity_embs, axis=1)).T 
+    
+        # Cosine similarity with node embeddings
+        sim = np.dot(self.entity_embeddings, entity_embs.T)
+
+        # Squeeze if needed
+        if sim.ndim == 2:
+            sim = sim
+
+        # Min-max normalize each column (each query)
+        sim_norm = np.zeros_like(sim)
+        for i in range(sim.shape[1]):
+            sim_norm[:, i] = min_max_normalize(sim[:, i])
+
+        top_idxs = sim_norm.argmax(axis=0)
+
+        print("=== ENTITY TO NODE MAPPING ===")
+
+        for i, entity in enumerate(query_entities):
+            idx = top_idxs[i]
+            node_key = self.entity_node_keys[idx]
+
+            node_name = self.entity_embedding_store.hash_id_to_text[node_key]
+            sim_score = sim[idx, i]
+            print(f"• Query: '{entity}' → Graph Node {idx} ('{node_name}')  [similarity={sim_score:.4f}]")
+
+        return {entity: idx for entity, idx in zip(query_entities, top_idxs)}
+
+    def build_reset_vector(self, entity_to_node: Dict[str, int], query_vector: Dict[str, float]) -> np.ndarray:
+        """
+        Create the personalized reset vector for PPR following HippoRAG methodology:
+        - Assign equal probability to all query nodes.
+        - Multiply each by the node specificity / TF-IDF weight.
+        - Normalize to sum=1.
+        """
+        num_nodes = self.entity_embeddings.shape[0]
+        reset_prob = np.zeros(num_nodes, dtype=float)
+        
+        if not entity_to_node:
+            return reset_prob  # empty query
+        
+        # Step 1: equal probability for each query node
+        equal_prob = 1.0 / len(entity_to_node)
+        
+        # Step 2: multiply by query_vector weight (node specificity analog)
+        for entity, node_idx in entity_to_node.items():
+            weight = query_vector.get(entity, 1.0)  # default 1.0 if not in query_vector
+            reset_prob[node_idx] = equal_prob * weight
+        
+        # Step 3: normalize
+        total = reset_prob.sum()
+        if total > 0:
+            reset_prob /= total
+            
+        return reset_prob
+
+
+    def retrieve_gcompose(self, prefix_entry):
+        """
+        Retrieve ranked entity nodes for a given prefix using TF-IDF reset probabilities.
+        """
+        if not self.ready_to_retrieve:
+            self.prepare_retrieval_objects()
+
+        # Extract entities and TF-IDF weights
+        query_entities = list(prefix_entry['query_vector'].keys())
+        query_vector = prefix_entry['query_vector']
+        
+        #print("QUERY VECTOR:")
+        #print(query_vector)
+
+        # 1. Map query entities to graph nodes
+        entity_to_node = self.find_query_nodes(query_entities)
+
+        print("ENTITY_TO_NODE: ")
+        print(entity_to_node)
+        
+        # 2. Build PPR reset vector
+        reset_prob = self.build_reset_vector(entity_to_node, query_vector)
+        
+        print("RESET_PROB: ")
+        print(reset_prob)
+        
+        # 3. Run PPR
+        sorted_node_ids, sorted_node_scores = self.run_ppr(reset_prob)
+        
+        print("SORTED_NODE_IDS: ")
+        print(sorted_node_ids)
+        
+        print("SORTED_NODE_SCORES: ")
+        print(sorted_node_scores)
+
+        return sorted_node_ids, sorted_node_scores
+
+
+    def _truncate_by_token_limit(
+        self,
+        sorted_paths: List[Tuple[List[Tuple[str, str]], float]],
+        max_tokens: int = 2048
+    ) -> List[Tuple[List[Tuple[str, str]], float]]:
+        """
+        Truncate top paths so that the total estimated tokens do not exceed max_tokens.
+        Heuristic: 1 token ≈ 4 characters, counting both entity names and relation labels.
+
+        Args:
+            sorted_paths: List of tuples (path: List[(node_text, relation)], score: float).
+            max_tokens: Maximum allowed tokens for all paths combined.
+
+        Returns:
+            List of (path, score) tuples that fit within max_tokens.
+        """
+        truncated_paths = []
+        total_chars = 0
+
+        #print("=== ENTERING _truncate_by_token_limit ===")
+
+        for i, (path, score) in enumerate(sorted_paths):
+            # Count both node text and relation text lengths
+            node_chars = sum(len(node) for node, _ in path)
+            relation_chars = sum(len(rel) for _, rel in path if rel)  # skip empty relation strings
+            path_chars = node_chars + relation_chars
+
+            path_tokens = path_chars / 4  # heuristic: ~1 token ≈ 4 characters
+
+            #print(f"[DEBUG] Path {i+1}: {path_chars} chars ({path_tokens:.1f} tokens), Score={score:.6f}")
+
+            # Check cumulative token budget
+            if (total_chars + path_chars) / 4 <= max_tokens:
+                truncated_paths.append((path, score))
+                total_chars += path_chars
+            else:
+                #print(f"[DEBUG] Token limit reached at path {i+1}. Stopping truncation.")
+                break
+
+        total_tokens = total_chars / 4
+        #print(f"[DEBUG] _truncate_by_token_limit: {len(truncated_paths)} paths kept, "
+        #    f"total estimated tokens: {total_tokens:.1f}/{max_tokens}")
+        #print("=== EXITING _truncate_by_token_limit ===")
+
+        return truncated_paths
+
+    def extract_top_k_paths(self, 
+                            sorted_node_ids: np.ndarray, 
+                            sorted_node_scores: np.ndarray, 
+                            prefix_entry: dict,
+                            n_hop: int = 10, 
+                            max_tokens: int = 2048) -> List[List[int]]:
+        """
+        Extract top reasoning paths using GCompose's Top-kP method (adapted from RoK).
+        kN = number of query entities
+        n_hop = 10
+        kP = dynamic (≤ 2048 tokens)
+        """
+
+        # 1. Set kN dynamically
+        kN = len(prefix_entry["query_vector"])
+        top_nodes = sorted_node_ids[:kN]
+        #print(f"DEBUG: kN={kN}, top_nodes={top_nodes}")
+
+
+        node_idx_to_score = {node_idx: score for node_idx, score in zip(sorted_node_ids, sorted_node_scores)}
+        #print(f"DEBUG: node_idx_to_score sample: {list(node_idx_to_score.items())[:5]}")
+
+        # 2. Remove synonymy edges
+        non_synonym_edges = [e.index for e in self.graph.es if e["relation"] != ""]
+        subgraph = self.graph.subgraph_edges(non_synonym_edges, delete_vertices=False)
+        #print(f"DEBUG: subgraph has {subgraph.vcount()} nodes and {subgraph.ecount()} edges")
+
+        # 3. Find all n-hop paths between top_nodes
+        paths = []
+        for i, src in enumerate(top_nodes):
+            #print("INSIDE FOR LOOP")
+            #print(i)
+            #print(src)
+            for dst in top_nodes[i+1:]:
+                src_idx = subgraph.vs.find(name=self.idx_to_node_name[src]).index
+                dst_idx = subgraph.vs.find(name=self.idx_to_node_name[dst]).index
+
+                found_paths = subgraph.get_all_simple_paths(src_idx, to=dst_idx, cutoff=n_hop, mode="out")
+                #print(f"DEBUG: found {len(found_paths)} paths from {src} to {dst}")
+
+                for path in found_paths:
+                    path_with_rel = []
+                    score = 0.0
+
+                    for j, idx in enumerate(path):
+                        node_name = subgraph.vs[idx]["content"]
+                        score += node_idx_to_score.get(idx, 0.0)
+
+                        if j < len(path) - 1:
+                            edge_id = subgraph.get_eid(path[j], path[j+1], directed=False, error=False)
+                            relation = subgraph.es[edge_id]["relation"] if edge_id != -1 else "unknown"
+                        else:
+                            relation = ""
+                        
+                        path_with_rel.append((node_name, relation))
+
+                    paths.append((path_with_rel, score))
+
+        #print(f"Total paths extracted before sorting: {len(paths)}")
+
+        # 4. Sort paths by summed PPR score
+        sorted_paths = sorted(paths, key=lambda x: x[1], reverse=True)
+        #print("AFTER SORT PATHS")
+        #print(sorted_paths)
+
+        # 5. Truncate paths by token limit
+        truncated_paths = self._truncate_by_token_limit(sorted_paths, max_tokens=max_tokens)
+        #print("AFTER TRUNCATED PATHS")
+        #print(truncated_paths)
+
+        print("=== FINAL TOP PATHS ===")
+        for i, (p, s) in enumerate(truncated_paths):
+            path_str = " -> ".join([f"{n}({r})" for n, r in p])
+            print(f"Path {i+1}: Score={s:.6f}, {path_str}")
+
+        return [p for p, s in truncated_paths]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

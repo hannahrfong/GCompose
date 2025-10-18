@@ -54,18 +54,23 @@ class OpenIE:
             )
             metadata['cache_hit'] = cache_hit
             if metadata['finish_reason'] == 'length':
+                logger.debug(f"[NER] Chunk {chunk_key}: response too long, calling fix_broken_generated_json.")
                 real_response = fix_broken_generated_json(raw_response)
             else:
                 real_response = raw_response
             extracted_entities = _extract_ner_from_response(real_response)
             unique_entities = list(dict.fromkeys(extracted_entities))
-            print("VAULTBOY NER START----------------------------------------")
-            print(f"NER raw response: {raw_response}")
-            print("VAULTBOY NER END----------------------------------------")
+            # DEBUG statements
+            logger.debug(f"[NER] Chunk {chunk_key} raw_response: {raw_response}")
+            if not extracted_entities:
+                logger.warning(f"[NER] Chunk {chunk_key} extracted no entities.")
+            else:
+                logger.debug(f"[NER] Chunk {chunk_key} extracted_entities: {extracted_entities}")
 
         except Exception as e:
             # For any other unexpected exceptions, log them and return with the error message
-            logger.warning(e)
+            #logger.warning(e)
+            logger.warning(f"[NER] Exception for chunk {chunk_key}: {e}")
             metadata.update({'error': str(e)})
             return NerRawOutput(
                 chunk_id=chunk_key,
@@ -82,6 +87,7 @@ class OpenIE:
         )
 
     def triple_extraction(self, chunk_key: str, passage: str, named_entities: List[str]) -> TripleRawOutput:
+        """
         if not named_entities:
             return TripleRawOutput(
                 chunk_id=chunk_key,
@@ -89,8 +95,10 @@ class OpenIE:
                 metadata={"skipped": "no_named_entities"},
                 triples=[]
             )
+        """
         def _extract_triples_from_response(real_response):
-            pattern = r'\{[^{}]*"triples"\s*:\s*\[[^\]]*\][^{}]*\}'
+            #pattern = r'\{[^{}]*"triples"\s*:\s*\[[^\]]*\][^{}]*\}'
+            pattern = r'\{[^{}]*(?:"triples"|"extracted_triples")\s*:\s*\[[^\]]*\][^{}]*\}'
             match = re.search(pattern, real_response, re.DOTALL)
             if match is None:
                 # If pattern doesn't match, return an empty list
@@ -113,17 +121,23 @@ class OpenIE:
             )
             metadata['cache_hit'] = cache_hit
             if metadata['finish_reason'] == 'length':
+                logger.debug(f"[TRIPLE] Chunk {chunk_key}: response too long, calling fix_broken_generated_json.")
                 real_response = fix_broken_generated_json(raw_response)
             else:
                 real_response = raw_response
             extracted_triples = _extract_triples_from_response(real_response)
             triplets = filter_invalid_triples(triples=extracted_triples)
-            print("VAULTBOY TRIPLE START----------------------------------------")
-            print(f"NER raw response: {raw_response}")
-            print("VAULTBOY TRIPLE END----------------------------------------")
+            
+            # DEBUG statements
+            logger.debug(f"[TRIPLE] Chunk {chunk_key} raw_response: {raw_response}")
+            if not extracted_triples:
+                logger.warning(f"[TRIPLE] Chunk {chunk_key} extracted no triples.")
+            else:
+                logger.debug(f"[TRIPLE] Chunk {chunk_key} extracted_triples: {extracted_triples}")
 
         except Exception as e:
-            logger.warning(f"Exception for chunk {chunk_key}: {e}")
+            #logger.warning(f"Exception for chunk {chunk_key}: {e}")
+            logger.warning(f"[TRIPLE] Exception for chunk {chunk_key}: {e}")
             metadata.update({'error': str(e)})
             return TripleRawOutput(
                 chunk_id=chunk_key,
@@ -144,7 +158,7 @@ class OpenIE:
         ner_output = self.ner(chunk_key=chunk_key, passage=passage)
         triple_output = self.triple_extraction(chunk_key=chunk_key, passage=passage, named_entities=ner_output.unique_entities)
         return {"ner": ner_output, "triplets": triple_output}
-
+    
     def batch_openie(self, chunks: Dict[str, ChunkInfo]) -> Tuple[Dict[str, NerRawOutput], Dict[str, TripleRawOutput]]:
         """
         Conduct batch OpenIE synchronously using multi-threading which includes NER and triple extraction.

@@ -1,0 +1,793 @@
+2025-10-17 23:46:59,080 - src.hipporag.embedding_model.OpenAI - DEBUG - Overriding OpenAIEmbeddingModel's embedding_model_name with: text-embedding-3-small
+2025-10-17 23:46:59,081 - src.hipporag.embedding_model.OpenAI - DEBUG - Init OpenAIEmbeddingModel's embedding_config: {
+    "embedding_model_name": "text-embedding-3-small",
+    "norm": true,
+    "model_init_params": {
+        "pretrained_model_name_or_path": "text-embedding-3-small",
+        "trust_remote_code": true,
+        "device_map": "auto"
+    },
+    "encode_params": {
+        "max_length": 2048,
+        "instruction": "",
+        "batch_size": 16,
+        "num_workers": 32
+    }
+}
+2025-10-17 23:46:59,081 - src.hipporag.embedding_model.OpenAI - DEBUG - Initializing OpenAIEmbeddingModel's embedding model with params: {'pretrained_model_name_or_path': 'text-embedding-3-small', 'trust_remote_code': True, 'device_map': 'auto'}
+2025-10-17 23:46:59,330 - src.hipporag.embedding_model.OpenAI - DEBUG - Overriding OpenAIEmbeddingModel's embedding_model_name with: text-embedding-3-small
+2025-10-17 23:46:59,330 - src.hipporag.embedding_model.OpenAI - DEBUG - Init OpenAIEmbeddingModel's embedding_config: {
+    "embedding_model_name": "text-embedding-3-small",
+    "norm": true,
+    "model_init_params": {
+        "pretrained_model_name_or_path": "text-embedding-3-small",
+        "trust_remote_code": true,
+        "device_map": "auto"
+    },
+    "encode_params": {
+        "max_length": 2048,
+        "instruction": "",
+        "batch_size": 16,
+        "num_workers": 32
+    }
+}
+2025-10-17 23:46:59,330 - src.hipporag.embedding_model.OpenAI - DEBUG - Initializing OpenAIEmbeddingModel's embedding model with params: {'pretrained_model_name_or_path': 'text-embedding-3-small', 'trust_remote_code': True, 'device_map': 'auto'}
+2025-10-17 23:46:59,512 - src.hipporag.embedding_model.OpenAI - DEBUG - Overriding OpenAIEmbeddingModel's embedding_model_name with: text-embedding-3-small
+2025-10-17 23:46:59,512 - src.hipporag.embedding_model.OpenAI - DEBUG - Init OpenAIEmbeddingModel's embedding_config: {
+    "embedding_model_name": "text-embedding-3-small",
+    "norm": true,
+    "model_init_params": {
+        "pretrained_model_name_or_path": "text-embedding-3-small",
+        "trust_remote_code": true,
+        "device_map": "auto"
+    },
+    "encode_params": {
+        "max_length": 2048,
+        "instruction": "",
+        "batch_size": 16,
+        "num_workers": 32
+    }
+}
+2025-10-17 23:46:59,512 - src.hipporag.embedding_model.OpenAI - DEBUG - Initializing OpenAIEmbeddingModel's embedding model with params: {'pretrained_model_name_or_path': 'text-embedding-3-small', 'trust_remote_code': True, 'device_map': 'auto'}
+2025-10-17 23:47:02,689 - src.hipporag.embedding_model.OpenAI - DEBUG - Overriding OpenAIEmbeddingModel's embedding_model_name with: text-embedding-3-small
+2025-10-17 23:47:02,690 - src.hipporag.embedding_model.OpenAI - DEBUG - Init OpenAIEmbeddingModel's embedding_config: {
+    "embedding_model_name": "text-embedding-3-small",
+    "norm": true,
+    "model_init_params": {
+        "pretrained_model_name_or_path": "text-embedding-3-small",
+        "trust_remote_code": true,
+        "device_map": "auto"
+    },
+    "encode_params": {
+        "max_length": 2048,
+        "instruction": "",
+        "batch_size": 16,
+        "num_workers": 32
+    }
+}
+2025-10-17 23:47:02,690 - src.hipporag.embedding_model.OpenAI - DEBUG - Initializing OpenAIEmbeddingModel's embedding model with params: {'pretrained_model_name_or_path': 'text-embedding-3-small', 'trust_remote_code': True, 'device_map': 'auto'}
+2025-10-17 23:47:02,778 - src.hipporag.embedding_model.OpenAI - DEBUG - Calling OpenAIEmbeddingModel with:
+{'max_length': 2048, 'instruction': '', 'batch_size': 16, 'num_workers': 32}
+2025-10-17 23:51:45,683 - src.hipporag.embedding_model.OpenAI - DEBUG - Overriding OpenAIEmbeddingModel's embedding_model_name with: text-embedding-3-small
+2025-10-17 23:51:45,684 - src.hipporag.embedding_model.OpenAI - DEBUG - Init OpenAIEmbeddingModel's embedding_config: {
+    "embedding_model_name": "text-embedding-3-small",
+    "norm": true,
+    "model_init_params": {
+        "pretrained_model_name_or_path": "text-embedding-3-small",
+        "trust_remote_code": true,
+        "device_map": "auto"
+    },
+    "encode_params": {
+        "max_length": 2048,
+        "instruction": "",
+        "batch_size": 16,
+        "num_workers": 32
+    }
+}
+2025-10-17 23:51:45,684 - src.hipporag.embedding_model.OpenAI - DEBUG - Initializing OpenAIEmbeddingModel's embedding model with params: {'pretrained_model_name_or_path': 'text-embedding-3-small', 'trust_remote_code': True, 'device_map': 'auto'}
+2025-10-17 23:51:45,893 - src.hipporag.embedding_model.OpenAI - DEBUG - Overriding OpenAIEmbeddingModel's embedding_model_name with: text-embedding-3-small
+2025-10-17 23:51:45,893 - src.hipporag.embedding_model.OpenAI - DEBUG - Init OpenAIEmbeddingModel's embedding_config: {
+    "embedding_model_name": "text-embedding-3-small",
+    "norm": true,
+    "model_init_params": {
+        "pretrained_model_name_or_path": "text-embedding-3-small",
+        "trust_remote_code": true,
+        "device_map": "auto"
+    },
+    "encode_params": {
+        "max_length": 2048,
+        "instruction": "",
+        "batch_size": 16,
+        "num_workers": 32
+    }
+}
+2025-10-17 23:51:45,893 - src.hipporag.embedding_model.OpenAI - DEBUG - Initializing OpenAIEmbeddingModel's embedding model with params: {'pretrained_model_name_or_path': 'text-embedding-3-small', 'trust_remote_code': True, 'device_map': 'auto'}
+2025-10-17 23:51:46,181 - src.hipporag.embedding_model.OpenAI - DEBUG - Overriding OpenAIEmbeddingModel's embedding_model_name with: text-embedding-3-small
+2025-10-17 23:51:46,182 - src.hipporag.embedding_model.OpenAI - DEBUG - Init OpenAIEmbeddingModel's embedding_config: {
+    "embedding_model_name": "text-embedding-3-small",
+    "norm": true,
+    "model_init_params": {
+        "pretrained_model_name_or_path": "text-embedding-3-small",
+        "trust_remote_code": true,
+        "device_map": "auto"
+    },
+    "encode_params": {
+        "max_length": 2048,
+        "instruction": "",
+        "batch_size": 16,
+        "num_workers": 32
+    }
+}
+2025-10-17 23:51:46,182 - src.hipporag.embedding_model.OpenAI - DEBUG - Initializing OpenAIEmbeddingModel's embedding model with params: {'pretrained_model_name_or_path': 'text-embedding-3-small', 'trust_remote_code': True, 'device_map': 'auto'}
+2025-10-17 23:51:49,115 - src.hipporag.embedding_model.OpenAI - DEBUG - Overriding OpenAIEmbeddingModel's embedding_model_name with: text-embedding-3-small
+2025-10-17 23:51:49,115 - src.hipporag.embedding_model.OpenAI - DEBUG - Init OpenAIEmbeddingModel's embedding_config: {
+    "embedding_model_name": "text-embedding-3-small",
+    "norm": true,
+    "model_init_params": {
+        "pretrained_model_name_or_path": "text-embedding-3-small",
+        "trust_remote_code": true,
+        "device_map": "auto"
+    },
+    "encode_params": {
+        "max_length": 2048,
+        "instruction": "",
+        "batch_size": 16,
+        "num_workers": 32
+    }
+}
+2025-10-17 23:51:49,115 - src.hipporag.embedding_model.OpenAI - DEBUG - Initializing OpenAIEmbeddingModel's embedding model with params: {'pretrained_model_name_or_path': 'text-embedding-3-small', 'trust_remote_code': True, 'device_map': 'auto'}
+2025-10-17 23:51:49,200 - src.hipporag.embedding_model.OpenAI - DEBUG - Calling OpenAIEmbeddingModel with:
+{'max_length': 2048, 'instruction': '', 'batch_size': 16, 'num_workers': 32}
+2025-10-17 23:55:48,681 - src.hipporag.embedding_model.OpenAI - DEBUG - Overriding OpenAIEmbeddingModel's embedding_model_name with: text-embedding-3-small
+2025-10-17 23:55:48,682 - src.hipporag.embedding_model.OpenAI - DEBUG - Init OpenAIEmbeddingModel's embedding_config: {
+    "embedding_model_name": "text-embedding-3-small",
+    "norm": true,
+    "model_init_params": {
+        "pretrained_model_name_or_path": "text-embedding-3-small",
+        "trust_remote_code": true,
+        "device_map": "auto"
+    },
+    "encode_params": {
+        "max_length": 2048,
+        "instruction": "",
+        "batch_size": 16,
+        "num_workers": 32
+    }
+}
+2025-10-17 23:55:48,682 - src.hipporag.embedding_model.OpenAI - DEBUG - Initializing OpenAIEmbeddingModel's embedding model with params: {'pretrained_model_name_or_path': 'text-embedding-3-small', 'trust_remote_code': True, 'device_map': 'auto'}
+2025-10-17 23:55:48,932 - src.hipporag.embedding_model.OpenAI - DEBUG - Overriding OpenAIEmbeddingModel's embedding_model_name with: text-embedding-3-small
+2025-10-17 23:55:48,932 - src.hipporag.embedding_model.OpenAI - DEBUG - Init OpenAIEmbeddingModel's embedding_config: {
+    "embedding_model_name": "text-embedding-3-small",
+    "norm": true,
+    "model_init_params": {
+        "pretrained_model_name_or_path": "text-embedding-3-small",
+        "trust_remote_code": true,
+        "device_map": "auto"
+    },
+    "encode_params": {
+        "max_length": 2048,
+        "instruction": "",
+        "batch_size": 16,
+        "num_workers": 32
+    }
+}
+2025-10-17 23:55:48,932 - src.hipporag.embedding_model.OpenAI - DEBUG - Initializing OpenAIEmbeddingModel's embedding model with params: {'pretrained_model_name_or_path': 'text-embedding-3-small', 'trust_remote_code': True, 'device_map': 'auto'}
+2025-10-17 23:55:49,550 - src.hipporag.embedding_model.OpenAI - DEBUG - Overriding OpenAIEmbeddingModel's embedding_model_name with: text-embedding-3-small
+2025-10-17 23:55:49,551 - src.hipporag.embedding_model.OpenAI - DEBUG - Init OpenAIEmbeddingModel's embedding_config: {
+    "embedding_model_name": "text-embedding-3-small",
+    "norm": true,
+    "model_init_params": {
+        "pretrained_model_name_or_path": "text-embedding-3-small",
+        "trust_remote_code": true,
+        "device_map": "auto"
+    },
+    "encode_params": {
+        "max_length": 2048,
+        "instruction": "",
+        "batch_size": 16,
+        "num_workers": 32
+    }
+}
+2025-10-17 23:55:49,551 - src.hipporag.embedding_model.OpenAI - DEBUG - Initializing OpenAIEmbeddingModel's embedding model with params: {'pretrained_model_name_or_path': 'text-embedding-3-small', 'trust_remote_code': True, 'device_map': 'auto'}
+2025-10-17 23:55:53,146 - src.hipporag.embedding_model.OpenAI - DEBUG - Overriding OpenAIEmbeddingModel's embedding_model_name with: text-embedding-3-small
+2025-10-17 23:55:53,146 - src.hipporag.embedding_model.OpenAI - DEBUG - Init OpenAIEmbeddingModel's embedding_config: {
+    "embedding_model_name": "text-embedding-3-small",
+    "norm": true,
+    "model_init_params": {
+        "pretrained_model_name_or_path": "text-embedding-3-small",
+        "trust_remote_code": true,
+        "device_map": "auto"
+    },
+    "encode_params": {
+        "max_length": 2048,
+        "instruction": "",
+        "batch_size": 16,
+        "num_workers": 32
+    }
+}
+2025-10-17 23:55:53,146 - src.hipporag.embedding_model.OpenAI - DEBUG - Initializing OpenAIEmbeddingModel's embedding model with params: {'pretrained_model_name_or_path': 'text-embedding-3-small', 'trust_remote_code': True, 'device_map': 'auto'}
+2025-10-17 23:55:53,230 - src.hipporag.embedding_model.OpenAI - DEBUG - Calling OpenAIEmbeddingModel with:
+{'max_length': 2048, 'instruction': '', 'batch_size': 16, 'num_workers': 32}
+2025-10-17 23:55:53,230 - src.hipporag.embedding_model.OpenAI - INFO - Attempting to encode batch of size 16...
+2025-10-17 23:55:55,892 - src.hipporag.embedding_model.OpenAI - WARNING - Retrying src.hipporag.embedding_model.OpenAI.OpenAIEmbeddingModel.batch_encode.<locals>.safe_encode in 1.0 seconds as it raised BadRequestError: Error code: 400 - {'error': {'message': "This model's maximum context length is 8192 tokens, however you requested 8330 tokens (8330 in your prompt; 0 for the completion). Please reduce your prompt; or completion length.", 'type': 'invalid_request_error', 'param': None, 'code': None}}.
+2025-10-17 23:55:56,896 - src.hipporag.embedding_model.OpenAI - INFO - Attempting to encode batch of size 16...
+2025-10-17 23:55:57,471 - src.hipporag.embedding_model.OpenAI - WARNING - Retrying src.hipporag.embedding_model.OpenAI.OpenAIEmbeddingModel.batch_encode.<locals>.safe_encode in 2.0 seconds as it raised BadRequestError: Error code: 400 - {'error': {'message': "This model's maximum context length is 8192 tokens, however you requested 8330 tokens (8330 in your prompt; 0 for the completion). Please reduce your prompt; or completion length.", 'type': 'invalid_request_error', 'param': None, 'code': None}}.
+2025-10-17 23:55:59,474 - src.hipporag.embedding_model.OpenAI - INFO - Attempting to encode batch of size 16...
+2025-10-17 23:56:00,269 - src.hipporag.embedding_model.OpenAI - WARNING - Retrying src.hipporag.embedding_model.OpenAI.OpenAIEmbeddingModel.batch_encode.<locals>.safe_encode in 4.0 seconds as it raised BadRequestError: Error code: 400 - {'error': {'message': "This model's maximum context length is 8192 tokens, however you requested 8330 tokens (8330 in your prompt; 0 for the completion). Please reduce your prompt; or completion length.", 'type': 'invalid_request_error', 'param': None, 'code': None}}.
+2025-10-18 00:24:51,536 - src.hipporag.embedding_model.OpenAI - DEBUG - Overriding OpenAIEmbeddingModel's embedding_model_name with: text-embedding-3-small
+2025-10-18 00:24:51,537 - src.hipporag.embedding_model.OpenAI - DEBUG - Init OpenAIEmbeddingModel's embedding_config: {
+    "embedding_model_name": "text-embedding-3-small",
+    "norm": true,
+    "model_init_params": {
+        "pretrained_model_name_or_path": "text-embedding-3-small",
+        "trust_remote_code": true,
+        "device_map": "auto"
+    },
+    "encode_params": {
+        "max_length": 2048,
+        "instruction": "",
+        "batch_size": 16,
+        "num_workers": 32
+    }
+}
+2025-10-18 00:24:51,537 - src.hipporag.embedding_model.OpenAI - DEBUG - Initializing OpenAIEmbeddingModel's embedding model with params: {'pretrained_model_name_or_path': 'text-embedding-3-small', 'trust_remote_code': True, 'device_map': 'auto'}
+2025-10-18 00:24:51,811 - src.hipporag.embedding_model.OpenAI - DEBUG - Overriding OpenAIEmbeddingModel's embedding_model_name with: text-embedding-3-small
+2025-10-18 00:24:51,811 - src.hipporag.embedding_model.OpenAI - DEBUG - Init OpenAIEmbeddingModel's embedding_config: {
+    "embedding_model_name": "text-embedding-3-small",
+    "norm": true,
+    "model_init_params": {
+        "pretrained_model_name_or_path": "text-embedding-3-small",
+        "trust_remote_code": true,
+        "device_map": "auto"
+    },
+    "encode_params": {
+        "max_length": 2048,
+        "instruction": "",
+        "batch_size": 16,
+        "num_workers": 32
+    }
+}
+2025-10-18 00:24:51,811 - src.hipporag.embedding_model.OpenAI - DEBUG - Initializing OpenAIEmbeddingModel's embedding model with params: {'pretrained_model_name_or_path': 'text-embedding-3-small', 'trust_remote_code': True, 'device_map': 'auto'}
+2025-10-18 00:24:52,416 - src.hipporag.embedding_model.OpenAI - DEBUG - Overriding OpenAIEmbeddingModel's embedding_model_name with: text-embedding-3-small
+2025-10-18 00:24:52,416 - src.hipporag.embedding_model.OpenAI - DEBUG - Init OpenAIEmbeddingModel's embedding_config: {
+    "embedding_model_name": "text-embedding-3-small",
+    "norm": true,
+    "model_init_params": {
+        "pretrained_model_name_or_path": "text-embedding-3-small",
+        "trust_remote_code": true,
+        "device_map": "auto"
+    },
+    "encode_params": {
+        "max_length": 2048,
+        "instruction": "",
+        "batch_size": 16,
+        "num_workers": 32
+    }
+}
+2025-10-18 00:24:52,416 - src.hipporag.embedding_model.OpenAI - DEBUG - Initializing OpenAIEmbeddingModel's embedding model with params: {'pretrained_model_name_or_path': 'text-embedding-3-small', 'trust_remote_code': True, 'device_map': 'auto'}
+2025-10-18 00:24:56,284 - src.hipporag.embedding_model.OpenAI - DEBUG - Overriding OpenAIEmbeddingModel's embedding_model_name with: text-embedding-3-small
+2025-10-18 00:24:56,284 - src.hipporag.embedding_model.OpenAI - DEBUG - Init OpenAIEmbeddingModel's embedding_config: {
+    "embedding_model_name": "text-embedding-3-small",
+    "norm": true,
+    "model_init_params": {
+        "pretrained_model_name_or_path": "text-embedding-3-small",
+        "trust_remote_code": true,
+        "device_map": "auto"
+    },
+    "encode_params": {
+        "max_length": 2048,
+        "instruction": "",
+        "batch_size": 16,
+        "num_workers": 32
+    }
+}
+2025-10-18 00:24:56,284 - src.hipporag.embedding_model.OpenAI - DEBUG - Initializing OpenAIEmbeddingModel's embedding model with params: {'pretrained_model_name_or_path': 'text-embedding-3-small', 'trust_remote_code': True, 'device_map': 'auto'}
+2025-10-18 00:24:56,374 - src.hipporag.embedding_model.OpenAI - DEBUG - Calling OpenAIEmbeddingModel with:
+{'max_length': 2048, 'instruction': '', 'batch_size': 16, 'num_workers': 32}
+2025-10-18 00:24:56,374 - src.hipporag.embedding_model.OpenAI - INFO - Attempting to encode batch of size 16...
+2025-10-18 00:24:58,547 - src.hipporag.embedding_model.OpenAI - WARNING - Retrying src.hipporag.embedding_model.OpenAI.OpenAIEmbeddingModel.batch_encode.<locals>.safe_encode in 1.0 seconds as it raised BadRequestError: Error code: 400 - {'error': {'message': "This model's maximum context length is 8192 tokens, however you requested 8330 tokens (8330 in your prompt; 0 for the completion). Please reduce your prompt; or completion length.", 'type': 'invalid_request_error', 'param': None, 'code': None}}.
+2025-10-18 00:24:59,549 - src.hipporag.embedding_model.OpenAI - INFO - Attempting to encode batch of size 16...
+2025-10-18 00:25:00,114 - src.hipporag.embedding_model.OpenAI - WARNING - Retrying src.hipporag.embedding_model.OpenAI.OpenAIEmbeddingModel.batch_encode.<locals>.safe_encode in 2.0 seconds as it raised BadRequestError: Error code: 400 - {'error': {'message': "This model's maximum context length is 8192 tokens, however you requested 8330 tokens (8330 in your prompt; 0 for the completion). Please reduce your prompt; or completion length.", 'type': 'invalid_request_error', 'param': None, 'code': None}}.
+2025-10-18 00:25:02,120 - src.hipporag.embedding_model.OpenAI - INFO - Attempting to encode batch of size 16...
+2025-10-18 00:25:03,081 - src.hipporag.embedding_model.OpenAI - WARNING - Retrying src.hipporag.embedding_model.OpenAI.OpenAIEmbeddingModel.batch_encode.<locals>.safe_encode in 4.0 seconds as it raised BadRequestError: Error code: 400 - {'error': {'message': "This model's maximum context length is 8192 tokens, however you requested 8330 tokens (8330 in your prompt; 0 for the completion). Please reduce your prompt; or completion length.", 'type': 'invalid_request_error', 'param': None, 'code': None}}.
+2025-10-18 00:31:45,958 - src.hipporag.embedding_model.OpenAI - DEBUG - Overriding OpenAIEmbeddingModel's embedding_model_name with: text-embedding-3-small
+2025-10-18 00:31:45,958 - src.hipporag.embedding_model.OpenAI - DEBUG - Init OpenAIEmbeddingModel's embedding_config: {
+    "embedding_model_name": "text-embedding-3-small",
+    "norm": true,
+    "model_init_params": {
+        "pretrained_model_name_or_path": "text-embedding-3-small",
+        "trust_remote_code": true,
+        "device_map": "auto"
+    },
+    "encode_params": {
+        "max_length": 2048,
+        "instruction": "",
+        "batch_size": 15,
+        "num_workers": 32
+    }
+}
+2025-10-18 00:31:45,958 - src.hipporag.embedding_model.OpenAI - DEBUG - Initializing OpenAIEmbeddingModel's embedding model with params: {'pretrained_model_name_or_path': 'text-embedding-3-small', 'trust_remote_code': True, 'device_map': 'auto'}
+2025-10-18 00:31:46,253 - src.hipporag.embedding_model.OpenAI - DEBUG - Overriding OpenAIEmbeddingModel's embedding_model_name with: text-embedding-3-small
+2025-10-18 00:31:46,253 - src.hipporag.embedding_model.OpenAI - DEBUG - Init OpenAIEmbeddingModel's embedding_config: {
+    "embedding_model_name": "text-embedding-3-small",
+    "norm": true,
+    "model_init_params": {
+        "pretrained_model_name_or_path": "text-embedding-3-small",
+        "trust_remote_code": true,
+        "device_map": "auto"
+    },
+    "encode_params": {
+        "max_length": 2048,
+        "instruction": "",
+        "batch_size": 15,
+        "num_workers": 32
+    }
+}
+2025-10-18 00:31:46,253 - src.hipporag.embedding_model.OpenAI - DEBUG - Initializing OpenAIEmbeddingModel's embedding model with params: {'pretrained_model_name_or_path': 'text-embedding-3-small', 'trust_remote_code': True, 'device_map': 'auto'}
+2025-10-18 00:31:46,742 - src.hipporag.embedding_model.OpenAI - DEBUG - Overriding OpenAIEmbeddingModel's embedding_model_name with: text-embedding-3-small
+2025-10-18 00:31:46,742 - src.hipporag.embedding_model.OpenAI - DEBUG - Init OpenAIEmbeddingModel's embedding_config: {
+    "embedding_model_name": "text-embedding-3-small",
+    "norm": true,
+    "model_init_params": {
+        "pretrained_model_name_or_path": "text-embedding-3-small",
+        "trust_remote_code": true,
+        "device_map": "auto"
+    },
+    "encode_params": {
+        "max_length": 2048,
+        "instruction": "",
+        "batch_size": 15,
+        "num_workers": 32
+    }
+}
+2025-10-18 00:31:46,742 - src.hipporag.embedding_model.OpenAI - DEBUG - Initializing OpenAIEmbeddingModel's embedding model with params: {'pretrained_model_name_or_path': 'text-embedding-3-small', 'trust_remote_code': True, 'device_map': 'auto'}
+2025-10-18 00:31:49,270 - src.hipporag.embedding_model.OpenAI - DEBUG - Overriding OpenAIEmbeddingModel's embedding_model_name with: text-embedding-3-small
+2025-10-18 00:31:49,270 - src.hipporag.embedding_model.OpenAI - DEBUG - Init OpenAIEmbeddingModel's embedding_config: {
+    "embedding_model_name": "text-embedding-3-small",
+    "norm": true,
+    "model_init_params": {
+        "pretrained_model_name_or_path": "text-embedding-3-small",
+        "trust_remote_code": true,
+        "device_map": "auto"
+    },
+    "encode_params": {
+        "max_length": 2048,
+        "instruction": "",
+        "batch_size": 15,
+        "num_workers": 32
+    }
+}
+2025-10-18 00:31:49,270 - src.hipporag.embedding_model.OpenAI - DEBUG - Initializing OpenAIEmbeddingModel's embedding model with params: {'pretrained_model_name_or_path': 'text-embedding-3-small', 'trust_remote_code': True, 'device_map': 'auto'}
+2025-10-18 00:31:49,350 - src.hipporag.embedding_model.OpenAI - DEBUG - Calling OpenAIEmbeddingModel with:
+{'max_length': 2048, 'instruction': '', 'batch_size': 15, 'num_workers': 32}
+2025-10-18 00:31:49,351 - src.hipporag.embedding_model.OpenAI - INFO - Attempting to encode batch of size 15...
+2025-10-18 00:31:51,264 - src.hipporag.embedding_model.OpenAI - WARNING - Retrying src.hipporag.embedding_model.OpenAI.OpenAIEmbeddingModel.batch_encode.<locals>.safe_encode in 1.0 seconds as it raised BadRequestError: Error code: 400 - {'error': {'message': "This model's maximum context length is 8192 tokens, however you requested 8330 tokens (8330 in your prompt; 0 for the completion). Please reduce your prompt; or completion length.", 'type': 'invalid_request_error', 'param': None, 'code': None}}.
+2025-10-18 00:31:52,265 - src.hipporag.embedding_model.OpenAI - INFO - Attempting to encode batch of size 15...
+2025-10-18 00:31:52,991 - src.hipporag.embedding_model.OpenAI - WARNING - Retrying src.hipporag.embedding_model.OpenAI.OpenAIEmbeddingModel.batch_encode.<locals>.safe_encode in 2.0 seconds as it raised BadRequestError: Error code: 400 - {'error': {'message': "This model's maximum context length is 8192 tokens, however you requested 8330 tokens (8330 in your prompt; 0 for the completion). Please reduce your prompt; or completion length.", 'type': 'invalid_request_error', 'param': None, 'code': None}}.
+2025-10-18 00:31:54,993 - src.hipporag.embedding_model.OpenAI - INFO - Attempting to encode batch of size 15...
+2025-10-18 00:31:55,550 - src.hipporag.embedding_model.OpenAI - WARNING - Retrying src.hipporag.embedding_model.OpenAI.OpenAIEmbeddingModel.batch_encode.<locals>.safe_encode in 4.0 seconds as it raised BadRequestError: Error code: 400 - {'error': {'message': "This model's maximum context length is 8192 tokens, however you requested 8330 tokens (8330 in your prompt; 0 for the completion). Please reduce your prompt; or completion length.", 'type': 'invalid_request_error', 'param': None, 'code': None}}.
+2025-10-18 00:32:45,123 - src.hipporag.embedding_model.OpenAI - DEBUG - Overriding OpenAIEmbeddingModel's embedding_model_name with: text-embedding-3-small
+2025-10-18 00:32:45,123 - src.hipporag.embedding_model.OpenAI - DEBUG - Init OpenAIEmbeddingModel's embedding_config: {
+    "embedding_model_name": "text-embedding-3-small",
+    "norm": true,
+    "model_init_params": {
+        "pretrained_model_name_or_path": "text-embedding-3-small",
+        "trust_remote_code": true,
+        "device_map": "auto"
+    },
+    "encode_params": {
+        "max_length": 2048,
+        "instruction": "",
+        "batch_size": 8,
+        "num_workers": 32
+    }
+}
+2025-10-18 00:32:45,123 - src.hipporag.embedding_model.OpenAI - DEBUG - Initializing OpenAIEmbeddingModel's embedding model with params: {'pretrained_model_name_or_path': 'text-embedding-3-small', 'trust_remote_code': True, 'device_map': 'auto'}
+2025-10-18 00:32:45,336 - src.hipporag.embedding_model.OpenAI - DEBUG - Overriding OpenAIEmbeddingModel's embedding_model_name with: text-embedding-3-small
+2025-10-18 00:32:45,336 - src.hipporag.embedding_model.OpenAI - DEBUG - Init OpenAIEmbeddingModel's embedding_config: {
+    "embedding_model_name": "text-embedding-3-small",
+    "norm": true,
+    "model_init_params": {
+        "pretrained_model_name_or_path": "text-embedding-3-small",
+        "trust_remote_code": true,
+        "device_map": "auto"
+    },
+    "encode_params": {
+        "max_length": 2048,
+        "instruction": "",
+        "batch_size": 8,
+        "num_workers": 32
+    }
+}
+2025-10-18 00:32:45,336 - src.hipporag.embedding_model.OpenAI - DEBUG - Initializing OpenAIEmbeddingModel's embedding model with params: {'pretrained_model_name_or_path': 'text-embedding-3-small', 'trust_remote_code': True, 'device_map': 'auto'}
+2025-10-18 00:32:45,507 - src.hipporag.embedding_model.OpenAI - DEBUG - Overriding OpenAIEmbeddingModel's embedding_model_name with: text-embedding-3-small
+2025-10-18 00:32:45,507 - src.hipporag.embedding_model.OpenAI - DEBUG - Init OpenAIEmbeddingModel's embedding_config: {
+    "embedding_model_name": "text-embedding-3-small",
+    "norm": true,
+    "model_init_params": {
+        "pretrained_model_name_or_path": "text-embedding-3-small",
+        "trust_remote_code": true,
+        "device_map": "auto"
+    },
+    "encode_params": {
+        "max_length": 2048,
+        "instruction": "",
+        "batch_size": 8,
+        "num_workers": 32
+    }
+}
+2025-10-18 00:32:45,507 - src.hipporag.embedding_model.OpenAI - DEBUG - Initializing OpenAIEmbeddingModel's embedding model with params: {'pretrained_model_name_or_path': 'text-embedding-3-small', 'trust_remote_code': True, 'device_map': 'auto'}
+2025-10-18 00:32:48,614 - src.hipporag.embedding_model.OpenAI - DEBUG - Overriding OpenAIEmbeddingModel's embedding_model_name with: text-embedding-3-small
+2025-10-18 00:32:48,614 - src.hipporag.embedding_model.OpenAI - DEBUG - Init OpenAIEmbeddingModel's embedding_config: {
+    "embedding_model_name": "text-embedding-3-small",
+    "norm": true,
+    "model_init_params": {
+        "pretrained_model_name_or_path": "text-embedding-3-small",
+        "trust_remote_code": true,
+        "device_map": "auto"
+    },
+    "encode_params": {
+        "max_length": 2048,
+        "instruction": "",
+        "batch_size": 8,
+        "num_workers": 32
+    }
+}
+2025-10-18 00:32:48,614 - src.hipporag.embedding_model.OpenAI - DEBUG - Initializing OpenAIEmbeddingModel's embedding model with params: {'pretrained_model_name_or_path': 'text-embedding-3-small', 'trust_remote_code': True, 'device_map': 'auto'}
+2025-10-18 00:32:48,713 - src.hipporag.embedding_model.OpenAI - DEBUG - Calling OpenAIEmbeddingModel with:
+{'max_length': 2048, 'instruction': '', 'batch_size': 8, 'num_workers': 32}
+2025-10-18 00:32:48,714 - src.hipporag.embedding_model.OpenAI - INFO - Attempting to encode batch of size 8...
+2025-10-18 00:32:49,595 - src.hipporag.embedding_model.OpenAI - WARNING - Retrying src.hipporag.embedding_model.OpenAI.OpenAIEmbeddingModel.batch_encode.<locals>.safe_encode in 1.0 seconds as it raised BadRequestError: Error code: 400 - {'error': {'message': "This model's maximum context length is 8192 tokens, however you requested 8330 tokens (8330 in your prompt; 0 for the completion). Please reduce your prompt; or completion length.", 'type': 'invalid_request_error', 'param': None, 'code': None}}.
+2025-10-18 00:32:50,600 - src.hipporag.embedding_model.OpenAI - INFO - Attempting to encode batch of size 8...
+2025-10-18 00:32:51,227 - src.hipporag.embedding_model.OpenAI - WARNING - Retrying src.hipporag.embedding_model.OpenAI.OpenAIEmbeddingModel.batch_encode.<locals>.safe_encode in 2.0 seconds as it raised BadRequestError: Error code: 400 - {'error': {'message': "This model's maximum context length is 8192 tokens, however you requested 8330 tokens (8330 in your prompt; 0 for the completion). Please reduce your prompt; or completion length.", 'type': 'invalid_request_error', 'param': None, 'code': None}}.
+2025-10-18 00:32:53,233 - src.hipporag.embedding_model.OpenAI - INFO - Attempting to encode batch of size 8...
+2025-10-18 00:32:53,694 - src.hipporag.embedding_model.OpenAI - WARNING - Retrying src.hipporag.embedding_model.OpenAI.OpenAIEmbeddingModel.batch_encode.<locals>.safe_encode in 4.0 seconds as it raised BadRequestError: Error code: 400 - {'error': {'message': "This model's maximum context length is 8192 tokens, however you requested 8330 tokens (8330 in your prompt; 0 for the completion). Please reduce your prompt; or completion length.", 'type': 'invalid_request_error', 'param': None, 'code': None}}.
+2025-10-18 02:00:28,989 - src.hipporag.embedding_model.OpenAI - DEBUG - Overriding OpenAIEmbeddingModel's embedding_model_name with: text-embedding-3-small
+2025-10-18 02:00:28,990 - src.hipporag.embedding_model.OpenAI - DEBUG - Init OpenAIEmbeddingModel's embedding_config: {
+    "embedding_model_name": "text-embedding-3-small",
+    "norm": true,
+    "model_init_params": {
+        "pretrained_model_name_or_path": "text-embedding-3-small",
+        "trust_remote_code": true,
+        "device_map": "auto"
+    },
+    "encode_params": {
+        "max_length": 2048,
+        "instruction": "",
+        "batch_size": 16,
+        "num_workers": 32
+    }
+}
+2025-10-18 02:00:28,990 - src.hipporag.embedding_model.OpenAI - DEBUG - Initializing OpenAIEmbeddingModel's embedding model with params: {'pretrained_model_name_or_path': 'text-embedding-3-small', 'trust_remote_code': True, 'device_map': 'auto'}
+2025-10-18 02:00:29,247 - src.hipporag.embedding_model.OpenAI - DEBUG - Overriding OpenAIEmbeddingModel's embedding_model_name with: text-embedding-3-small
+2025-10-18 02:00:29,247 - src.hipporag.embedding_model.OpenAI - DEBUG - Init OpenAIEmbeddingModel's embedding_config: {
+    "embedding_model_name": "text-embedding-3-small",
+    "norm": true,
+    "model_init_params": {
+        "pretrained_model_name_or_path": "text-embedding-3-small",
+        "trust_remote_code": true,
+        "device_map": "auto"
+    },
+    "encode_params": {
+        "max_length": 2048,
+        "instruction": "",
+        "batch_size": 16,
+        "num_workers": 32
+    }
+}
+2025-10-18 02:00:29,247 - src.hipporag.embedding_model.OpenAI - DEBUG - Initializing OpenAIEmbeddingModel's embedding model with params: {'pretrained_model_name_or_path': 'text-embedding-3-small', 'trust_remote_code': True, 'device_map': 'auto'}
+2025-10-18 02:00:29,800 - src.hipporag.embedding_model.OpenAI - DEBUG - Overriding OpenAIEmbeddingModel's embedding_model_name with: text-embedding-3-small
+2025-10-18 02:00:29,800 - src.hipporag.embedding_model.OpenAI - DEBUG - Init OpenAIEmbeddingModel's embedding_config: {
+    "embedding_model_name": "text-embedding-3-small",
+    "norm": true,
+    "model_init_params": {
+        "pretrained_model_name_or_path": "text-embedding-3-small",
+        "trust_remote_code": true,
+        "device_map": "auto"
+    },
+    "encode_params": {
+        "max_length": 2048,
+        "instruction": "",
+        "batch_size": 16,
+        "num_workers": 32
+    }
+}
+2025-10-18 02:00:29,800 - src.hipporag.embedding_model.OpenAI - DEBUG - Initializing OpenAIEmbeddingModel's embedding model with params: {'pretrained_model_name_or_path': 'text-embedding-3-small', 'trust_remote_code': True, 'device_map': 'auto'}
+2025-10-18 02:00:33,311 - src.hipporag.embedding_model.OpenAI - DEBUG - Overriding OpenAIEmbeddingModel's embedding_model_name with: text-embedding-3-small
+2025-10-18 02:00:33,311 - src.hipporag.embedding_model.OpenAI - DEBUG - Init OpenAIEmbeddingModel's embedding_config: {
+    "embedding_model_name": "text-embedding-3-small",
+    "norm": true,
+    "model_init_params": {
+        "pretrained_model_name_or_path": "text-embedding-3-small",
+        "trust_remote_code": true,
+        "device_map": "auto"
+    },
+    "encode_params": {
+        "max_length": 2048,
+        "instruction": "",
+        "batch_size": 16,
+        "num_workers": 32
+    }
+}
+2025-10-18 02:00:33,311 - src.hipporag.embedding_model.OpenAI - DEBUG - Initializing OpenAIEmbeddingModel's embedding model with params: {'pretrained_model_name_or_path': 'text-embedding-3-small', 'trust_remote_code': True, 'device_map': 'auto'}
+2025-10-18 02:11:52,577 - src.hipporag.embedding_model.OpenAI - DEBUG - Calling OpenAIEmbeddingModel with:
+{'max_length': 2048, 'instruction': '', 'batch_size': 16, 'num_workers': 32}
+2025-10-18 02:15:16,844 - src.hipporag.embedding_model.OpenAI - DEBUG - Overriding OpenAIEmbeddingModel's embedding_model_name with: text-embedding-3-small
+2025-10-18 02:15:16,844 - src.hipporag.embedding_model.OpenAI - DEBUG - Init OpenAIEmbeddingModel's embedding_config: {
+    "embedding_model_name": "text-embedding-3-small",
+    "norm": true,
+    "model_init_params": {
+        "pretrained_model_name_or_path": "text-embedding-3-small",
+        "trust_remote_code": true,
+        "device_map": "auto"
+    },
+    "encode_params": {
+        "max_length": 2048,
+        "instruction": "",
+        "batch_size": 16,
+        "num_workers": 32
+    }
+}
+2025-10-18 02:15:16,844 - src.hipporag.embedding_model.OpenAI - DEBUG - Initializing OpenAIEmbeddingModel's embedding model with params: {'pretrained_model_name_or_path': 'text-embedding-3-small', 'trust_remote_code': True, 'device_map': 'auto'}
+2025-10-18 02:16:44,309 - src.hipporag.embedding_model.OpenAI - DEBUG - Calling OpenAIEmbeddingModel with:
+{'max_length': 2048, 'instruction': '', 'batch_size': 16, 'num_workers': 32}
+2025-10-18 02:17:33,154 - src.hipporag.embedding_model.OpenAI - DEBUG - Overriding OpenAIEmbeddingModel's embedding_model_name with: text-embedding-3-small
+2025-10-18 02:17:33,154 - src.hipporag.embedding_model.OpenAI - DEBUG - Init OpenAIEmbeddingModel's embedding_config: {
+    "embedding_model_name": "text-embedding-3-small",
+    "norm": true,
+    "model_init_params": {
+        "pretrained_model_name_or_path": "text-embedding-3-small",
+        "trust_remote_code": true,
+        "device_map": "auto"
+    },
+    "encode_params": {
+        "max_length": 2048,
+        "instruction": "",
+        "batch_size": 16,
+        "num_workers": 32
+    }
+}
+2025-10-18 02:17:33,154 - src.hipporag.embedding_model.OpenAI - DEBUG - Initializing OpenAIEmbeddingModel's embedding model with params: {'pretrained_model_name_or_path': 'text-embedding-3-small', 'trust_remote_code': True, 'device_map': 'auto'}
+2025-10-18 02:18:41,062 - src.hipporag.embedding_model.OpenAI - DEBUG - Calling OpenAIEmbeddingModel with:
+{'max_length': 2048, 'instruction': '', 'batch_size': 16, 'num_workers': 32}
+2025-10-18 02:19:22,099 - src.hipporag.embedding_model.OpenAI - DEBUG - Overriding OpenAIEmbeddingModel's embedding_model_name with: text-embedding-3-small
+2025-10-18 02:19:22,099 - src.hipporag.embedding_model.OpenAI - DEBUG - Init OpenAIEmbeddingModel's embedding_config: {
+    "embedding_model_name": "text-embedding-3-small",
+    "norm": true,
+    "model_init_params": {
+        "pretrained_model_name_or_path": "text-embedding-3-small",
+        "trust_remote_code": true,
+        "device_map": "auto"
+    },
+    "encode_params": {
+        "max_length": 2048,
+        "instruction": "",
+        "batch_size": 16,
+        "num_workers": 32
+    }
+}
+2025-10-18 02:19:22,099 - src.hipporag.embedding_model.OpenAI - DEBUG - Initializing OpenAIEmbeddingModel's embedding model with params: {'pretrained_model_name_or_path': 'text-embedding-3-small', 'trust_remote_code': True, 'device_map': 'auto'}
+2025-10-18 02:19:23,759 - src.hipporag.embedding_model.OpenAI - DEBUG - Overriding OpenAIEmbeddingModel's embedding_model_name with: text-embedding-3-small
+2025-10-18 02:19:23,759 - src.hipporag.embedding_model.OpenAI - DEBUG - Init OpenAIEmbeddingModel's embedding_config: {
+    "embedding_model_name": "text-embedding-3-small",
+    "norm": true,
+    "model_init_params": {
+        "pretrained_model_name_or_path": "text-embedding-3-small",
+        "trust_remote_code": true,
+        "device_map": "auto"
+    },
+    "encode_params": {
+        "max_length": 2048,
+        "instruction": "",
+        "batch_size": 16,
+        "num_workers": 32
+    }
+}
+2025-10-18 02:19:23,759 - src.hipporag.embedding_model.OpenAI - DEBUG - Initializing OpenAIEmbeddingModel's embedding model with params: {'pretrained_model_name_or_path': 'text-embedding-3-small', 'trust_remote_code': True, 'device_map': 'auto'}
+2025-10-18 02:20:42,086 - src.hipporag.embedding_model.OpenAI - DEBUG - Calling OpenAIEmbeddingModel with:
+{'max_length': 2048, 'instruction': '', 'batch_size': 16, 'num_workers': 32}
+2025-10-18 02:21:26,741 - src.hipporag.embedding_model.OpenAI - DEBUG - Overriding OpenAIEmbeddingModel's embedding_model_name with: text-embedding-3-small
+2025-10-18 02:21:26,741 - src.hipporag.embedding_model.OpenAI - DEBUG - Init OpenAIEmbeddingModel's embedding_config: {
+    "embedding_model_name": "text-embedding-3-small",
+    "norm": true,
+    "model_init_params": {
+        "pretrained_model_name_or_path": "text-embedding-3-small",
+        "trust_remote_code": true,
+        "device_map": "auto"
+    },
+    "encode_params": {
+        "max_length": 2048,
+        "instruction": "",
+        "batch_size": 16,
+        "num_workers": 32
+    }
+}
+2025-10-18 02:21:26,741 - src.hipporag.embedding_model.OpenAI - DEBUG - Initializing OpenAIEmbeddingModel's embedding model with params: {'pretrained_model_name_or_path': 'text-embedding-3-small', 'trust_remote_code': True, 'device_map': 'auto'}
+2025-10-18 02:23:32,436 - src.hipporag.embedding_model.OpenAI - DEBUG - Calling OpenAIEmbeddingModel with:
+{'max_length': 2048, 'instruction': '', 'batch_size': 16, 'num_workers': 32}
+2025-10-18 02:24:26,637 - src.hipporag.embedding_model.OpenAI - DEBUG - Overriding OpenAIEmbeddingModel's embedding_model_name with: text-embedding-3-small
+2025-10-18 02:24:26,637 - src.hipporag.embedding_model.OpenAI - DEBUG - Init OpenAIEmbeddingModel's embedding_config: {
+    "embedding_model_name": "text-embedding-3-small",
+    "norm": true,
+    "model_init_params": {
+        "pretrained_model_name_or_path": "text-embedding-3-small",
+        "trust_remote_code": true,
+        "device_map": "auto"
+    },
+    "encode_params": {
+        "max_length": 2048,
+        "instruction": "",
+        "batch_size": 16,
+        "num_workers": 32
+    }
+}
+2025-10-18 02:24:26,637 - src.hipporag.embedding_model.OpenAI - DEBUG - Initializing OpenAIEmbeddingModel's embedding model with params: {'pretrained_model_name_or_path': 'text-embedding-3-small', 'trust_remote_code': True, 'device_map': 'auto'}
+2025-10-18 03:44:48,774 - src.hipporag.embedding_model.OpenAI - DEBUG - Overriding OpenAIEmbeddingModel's embedding_model_name with: text-embedding-3-small
+2025-10-18 03:44:48,774 - src.hipporag.embedding_model.OpenAI - DEBUG - Init OpenAIEmbeddingModel's embedding_config: {
+    "embedding_model_name": "text-embedding-3-small",
+    "norm": true,
+    "model_init_params": {
+        "pretrained_model_name_or_path": "text-embedding-3-small",
+        "trust_remote_code": true,
+        "device_map": "auto"
+    },
+    "encode_params": {
+        "max_length": 2048,
+        "instruction": "",
+        "batch_size": 16,
+        "num_workers": 32
+    }
+}
+2025-10-18 03:44:48,774 - src.hipporag.embedding_model.OpenAI - DEBUG - Initializing OpenAIEmbeddingModel's embedding model with params: {'pretrained_model_name_or_path': 'text-embedding-3-small', 'trust_remote_code': True, 'device_map': 'auto'}
+2025-10-18 03:46:00,055 - src.hipporag.embedding_model.OpenAI - DEBUG - Calling OpenAIEmbeddingModel with:
+{'max_length': 2048, 'instruction': '', 'batch_size': 16, 'num_workers': 32}
+2025-10-18 03:47:12,584 - src.hipporag.embedding_model.OpenAI - DEBUG - Overriding OpenAIEmbeddingModel's embedding_model_name with: text-embedding-3-small
+2025-10-18 03:47:12,584 - src.hipporag.embedding_model.OpenAI - DEBUG - Init OpenAIEmbeddingModel's embedding_config: {
+    "embedding_model_name": "text-embedding-3-small",
+    "norm": true,
+    "model_init_params": {
+        "pretrained_model_name_or_path": "text-embedding-3-small",
+        "trust_remote_code": true,
+        "device_map": "auto"
+    },
+    "encode_params": {
+        "max_length": 2048,
+        "instruction": "",
+        "batch_size": 16,
+        "num_workers": 32
+    }
+}
+2025-10-18 03:47:12,584 - src.hipporag.embedding_model.OpenAI - DEBUG - Initializing OpenAIEmbeddingModel's embedding model with params: {'pretrained_model_name_or_path': 'text-embedding-3-small', 'trust_remote_code': True, 'device_map': 'auto'}
+2025-10-18 03:47:12,718 - src.hipporag.embedding_model.OpenAI - DEBUG - Overriding OpenAIEmbeddingModel's embedding_model_name with: text-embedding-3-small
+2025-10-18 03:47:12,719 - src.hipporag.embedding_model.OpenAI - DEBUG - Init OpenAIEmbeddingModel's embedding_config: {
+    "embedding_model_name": "text-embedding-3-small",
+    "norm": true,
+    "model_init_params": {
+        "pretrained_model_name_or_path": "text-embedding-3-small",
+        "trust_remote_code": true,
+        "device_map": "auto"
+    },
+    "encode_params": {
+        "max_length": 2048,
+        "instruction": "",
+        "batch_size": 16,
+        "num_workers": 32
+    }
+}
+2025-10-18 03:47:12,719 - src.hipporag.embedding_model.OpenAI - DEBUG - Initializing OpenAIEmbeddingModel's embedding model with params: {'pretrained_model_name_or_path': 'text-embedding-3-small', 'trust_remote_code': True, 'device_map': 'auto'}
+2025-10-18 03:47:44,701 - src.hipporag.embedding_model.OpenAI - DEBUG - Calling OpenAIEmbeddingModel with:
+{'max_length': 2048, 'instruction': '', 'batch_size': 16, 'num_workers': 32}
+2025-10-18 03:47:56,183 - src.hipporag.embedding_model.OpenAI - DEBUG - Overriding OpenAIEmbeddingModel's embedding_model_name with: text-embedding-3-small
+2025-10-18 03:47:56,183 - src.hipporag.embedding_model.OpenAI - DEBUG - Init OpenAIEmbeddingModel's embedding_config: {
+    "embedding_model_name": "text-embedding-3-small",
+    "norm": true,
+    "model_init_params": {
+        "pretrained_model_name_or_path": "text-embedding-3-small",
+        "trust_remote_code": true,
+        "device_map": "auto"
+    },
+    "encode_params": {
+        "max_length": 2048,
+        "instruction": "",
+        "batch_size": 16,
+        "num_workers": 32
+    }
+}
+2025-10-18 03:47:56,183 - src.hipporag.embedding_model.OpenAI - DEBUG - Initializing OpenAIEmbeddingModel's embedding model with params: {'pretrained_model_name_or_path': 'text-embedding-3-small', 'trust_remote_code': True, 'device_map': 'auto'}
+2025-10-18 03:48:06,115 - src.hipporag.embedding_model.OpenAI - DEBUG - Calling OpenAIEmbeddingModel with:
+{'max_length': 2048, 'instruction': '', 'batch_size': 16, 'num_workers': 32}
+2025-10-18 03:48:08,445 - src.hipporag.embedding_model.OpenAI - DEBUG - Overriding OpenAIEmbeddingModel's embedding_model_name with: text-embedding-3-small
+2025-10-18 03:48:08,445 - src.hipporag.embedding_model.OpenAI - DEBUG - Init OpenAIEmbeddingModel's embedding_config: {
+    "embedding_model_name": "text-embedding-3-small",
+    "norm": true,
+    "model_init_params": {
+        "pretrained_model_name_or_path": "text-embedding-3-small",
+        "trust_remote_code": true,
+        "device_map": "auto"
+    },
+    "encode_params": {
+        "max_length": 2048,
+        "instruction": "",
+        "batch_size": 16,
+        "num_workers": 32
+    }
+}
+2025-10-18 03:48:08,445 - src.hipporag.embedding_model.OpenAI - DEBUG - Initializing OpenAIEmbeddingModel's embedding model with params: {'pretrained_model_name_or_path': 'text-embedding-3-small', 'trust_remote_code': True, 'device_map': 'auto'}
+2025-10-18 03:48:42,683 - src.hipporag.embedding_model.OpenAI - DEBUG - Calling OpenAIEmbeddingModel with:
+{'max_length': 2048, 'instruction': '', 'batch_size': 16, 'num_workers': 32}
+2025-10-18 03:48:58,963 - src.hipporag.embedding_model.OpenAI - DEBUG - Overriding OpenAIEmbeddingModel's embedding_model_name with: text-embedding-3-small
+2025-10-18 03:48:58,963 - src.hipporag.embedding_model.OpenAI - DEBUG - Init OpenAIEmbeddingModel's embedding_config: {
+    "embedding_model_name": "text-embedding-3-small",
+    "norm": true,
+    "model_init_params": {
+        "pretrained_model_name_or_path": "text-embedding-3-small",
+        "trust_remote_code": true,
+        "device_map": "auto"
+    },
+    "encode_params": {
+        "max_length": 2048,
+        "instruction": "",
+        "batch_size": 16,
+        "num_workers": 32
+    }
+}
+2025-10-18 03:48:58,963 - src.hipporag.embedding_model.OpenAI - DEBUG - Initializing OpenAIEmbeddingModel's embedding model with params: {'pretrained_model_name_or_path': 'text-embedding-3-small', 'trust_remote_code': True, 'device_map': 'auto'}
+2025-10-18 03:49:15,919 - src.hipporag.embedding_model.OpenAI - DEBUG - Calling OpenAIEmbeddingModel with:
+{'max_length': 2048, 'instruction': '', 'batch_size': 16, 'num_workers': 32}
+2025-10-18 03:49:25,139 - src.hipporag.embedding_model.OpenAI - DEBUG - Overriding OpenAIEmbeddingModel's embedding_model_name with: text-embedding-3-small
+2025-10-18 03:49:25,139 - src.hipporag.embedding_model.OpenAI - DEBUG - Init OpenAIEmbeddingModel's embedding_config: {
+    "embedding_model_name": "text-embedding-3-small",
+    "norm": true,
+    "model_init_params": {
+        "pretrained_model_name_or_path": "text-embedding-3-small",
+        "trust_remote_code": true,
+        "device_map": "auto"
+    },
+    "encode_params": {
+        "max_length": 2048,
+        "instruction": "",
+        "batch_size": 16,
+        "num_workers": 32
+    }
+}
+2025-10-18 03:49:25,139 - src.hipporag.embedding_model.OpenAI - DEBUG - Initializing OpenAIEmbeddingModel's embedding model with params: {'pretrained_model_name_or_path': 'text-embedding-3-small', 'trust_remote_code': True, 'device_map': 'auto'}
+2025-10-18 03:50:09,021 - src.hipporag.embedding_model.OpenAI - DEBUG - Calling OpenAIEmbeddingModel with:
+{'max_length': 2048, 'instruction': '', 'batch_size': 16, 'num_workers': 32}
+2025-10-18 03:50:34,379 - src.hipporag.embedding_model.OpenAI - DEBUG - Overriding OpenAIEmbeddingModel's embedding_model_name with: text-embedding-3-small
+2025-10-18 03:50:34,379 - src.hipporag.embedding_model.OpenAI - DEBUG - Init OpenAIEmbeddingModel's embedding_config: {
+    "embedding_model_name": "text-embedding-3-small",
+    "norm": true,
+    "model_init_params": {
+        "pretrained_model_name_or_path": "text-embedding-3-small",
+        "trust_remote_code": true,
+        "device_map": "auto"
+    },
+    "encode_params": {
+        "max_length": 2048,
+        "instruction": "",
+        "batch_size": 16,
+        "num_workers": 32
+    }
+}
+2025-10-18 03:50:34,379 - src.hipporag.embedding_model.OpenAI - DEBUG - Initializing OpenAIEmbeddingModel's embedding model with params: {'pretrained_model_name_or_path': 'text-embedding-3-small', 'trust_remote_code': True, 'device_map': 'auto'}
+2025-10-18 03:55:12,165 - src.hipporag.embedding_model.OpenAI - DEBUG - Calling OpenAIEmbeddingModel with:
+{'max_length': 2048, 'instruction': '', 'batch_size': 16, 'num_workers': 32}
+2025-10-18 03:58:44,761 - src.hipporag.embedding_model.OpenAI - DEBUG - Overriding OpenAIEmbeddingModel's embedding_model_name with: text-embedding-3-small
+2025-10-18 03:58:44,761 - src.hipporag.embedding_model.OpenAI - DEBUG - Init OpenAIEmbeddingModel's embedding_config: {
+    "embedding_model_name": "text-embedding-3-small",
+    "norm": true,
+    "model_init_params": {
+        "pretrained_model_name_or_path": "text-embedding-3-small",
+        "trust_remote_code": true,
+        "device_map": "auto"
+    },
+    "encode_params": {
+        "max_length": 2048,
+        "instruction": "",
+        "batch_size": 16,
+        "num_workers": 32
+    }
+}
+2025-10-18 03:58:44,761 - src.hipporag.embedding_model.OpenAI - DEBUG - Initializing OpenAIEmbeddingModel's embedding model with params: {'pretrained_model_name_or_path': 'text-embedding-3-small', 'trust_remote_code': True, 'device_map': 'auto'}
+2025-10-18 03:59:35,781 - src.hipporag.embedding_model.OpenAI - DEBUG - Calling OpenAIEmbeddingModel with:
+{'max_length': 2048, 'instruction': '', 'batch_size': 16, 'num_workers': 32}

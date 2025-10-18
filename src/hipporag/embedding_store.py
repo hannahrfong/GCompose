@@ -62,7 +62,7 @@ class EmbeddingStore:
 
     def insert_strings(self, texts: List[str]):
         nodes_dict = {}
-
+        
         for text in texts:
             nodes_dict[compute_mdhash_id(text, prefix=self.namespace + "-")] = {'content': text}
 
@@ -85,7 +85,14 @@ class EmbeddingStore:
         # Prepare the texts to encode from the "content" field.
         texts_to_encode = [nodes_dict[hash_id]["content"] for hash_id in missing_ids]
 
-        missing_embeddings = self.embedding_model.batch_encode(texts_to_encode)
+        # ✅ If namespace doesn't need real embeddings, use dummy zero vectors
+        if self.namespace in ["chunk", "fact"]:
+            logger.info(f"Namespace '{self.namespace}' detected — using dummy (zero) embeddings.")
+            # You can pick the embedding dimension from your model config
+            dummy_dim = getattr(self.embedding_model, "embedding_dim", 1536)  # or set manually
+            missing_embeddings = np.zeros((len(texts_to_encode), dummy_dim))
+        else:
+            missing_embeddings = self.embedding_model.batch_encode(texts_to_encode)
 
         self._upsert(missing_ids, texts_to_encode, missing_embeddings)
 

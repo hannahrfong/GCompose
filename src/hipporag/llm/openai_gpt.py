@@ -12,7 +12,7 @@ from filelock import FileLock
 from openai import OpenAI
 from openai import AzureOpenAI
 from packaging import version
-from tenacity import retry, stop_after_attempt, wait_fixed
+from tenacity import retry, stop_after_attempt, wait_fixed, wait_exponential_jitter, retry_if_exception_type
 
 from ..utils.config_utils import BaseConfig
 from ..utils.llm_utils import (
@@ -104,9 +104,20 @@ def cache_response(func):
 def dynamic_retry_decorator(func):
     @functools.wraps(func)
     def wrapper(self, *args, **kwargs):
-        max_retries = getattr(self, "max_retries", 5)  
-        dynamic_retry = retry(stop=stop_after_attempt(max_retries), wait=wait_fixed(1))
-        decorated_func = dynamic_retry(func)
+        # Retry indefinitely for all exceptions
+        decorated_func = retry(
+            reraise=True,  # raise only if the final attempt fails (won't happen because we retry forever)
+            wait=wait_exponential_jitter(
+                initial=1,  # start with 1 second
+                max=15,     # cap waiting at 30 seconds (can adjust)
+            ),
+            retry=retry_if_exception_type(Exception),  # retry for all exceptions
+            before_sleep=lambda retry_state: logger.warning(
+                f"Retrying {func.__name__} due to {retry_state.outcome.exception()}. "
+                f"Next attempt in {retry_state.next_action.sleep} seconds."
+            )
+        )(func)
+
         return decorated_func(self, *args, **kwargs)
     return wrapper
 
@@ -195,5 +206,3 @@ class CacheOpenAI(BaseLLM):
         }
 
         return response_message, metadata
-
-

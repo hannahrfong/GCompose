@@ -95,10 +95,17 @@ def extract_entity_nodes(chunk_triples: List[List[Triple]]) -> (List[str], List[
     return graph_nodes, chunk_triple_entities
 
 def flatten_facts(chunk_triples: List[Triple]) -> List[Triple]:
+    print("BEFORE FLATTEN")
+    total = 0
+    for c in chunk_triples:
+        total += len(c)
+    print(total)
     graph_triples = []  # a list of unique relation triple (in tuple) from all chunks
     for triples in chunk_triples:
         graph_triples.extend([tuple(t) for t in triples])
     graph_triples = list(set(graph_triples))
+    print("AFTER FLATTEN")
+    print(len(graph_triples))
     return graph_triples
 
 def min_max_normalize(x):
